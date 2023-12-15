@@ -13,7 +13,7 @@ class UserController extends Controller
     function getAllVoters()
     {
         try {
-            $voters = User::paginate(20);
+            $voters = User::all();
             return response()->json([
                 'success' => true,
                 'data' => $voters
@@ -34,16 +34,10 @@ class UserController extends Controller
         }
 
     }
-    public function getVoter()
+    public function getVoter($id)
     {
         try {
-            // $payload = JWTAuth::getPayload();
-
-            // Inspect the payload
-            // $userId = $payload->get('sub');
-
-            // Retrieve the user by ID
-            $user = User::find(1);
+            $user = User::find($id);
 
             if (!$user) {
                 return response()->json(['msg' => 'No voter found', 'success' => false], 404);
