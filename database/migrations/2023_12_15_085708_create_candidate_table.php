@@ -16,7 +16,7 @@ return new class extends Migration
             $table->unsignedBigInteger('election_id');
             $table->string('fname');
             $table->string('lname');
-            $table->string('image');
+            $table->string('image')->nullable();
             $table->string('email');
             $table->string('phone');
             $table->enum('status', ['active', 'inactive'])->default('active');

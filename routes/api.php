@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\CandidateController;
 use App\Http\Controllers\ElectionController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\VoterAuthController;
@@ -26,5 +27,12 @@ Route::prefix('v1')->group(function () {
         Route::get('/elections/{id}', 'show');
         Route::post('/create-election', 'create');
         Route::delete('/delete-election/{id}', 'destroy');
+    });
+
+    Route::controller(CandidateController::class)->group(function () {
+        Route::get('/candidates/{id}', 'index');
+        // Route::get('/candidates/{id}', 'show');
+        Route::post('/create-candidate', 'create');
+        Route::delete('/delete-candidate/{id}', 'destroy');
     });
 });
