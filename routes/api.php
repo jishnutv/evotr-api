@@ -3,6 +3,7 @@
 use App\Http\Controllers\CandidateController;
 use App\Http\Controllers\ElectionController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\VoteController;
 use App\Http\Controllers\VoterAuthController;
 use Illuminate\Support\Facades\Route;
 
@@ -34,5 +35,10 @@ Route::prefix('v1')->group(function () {
         // Route::get('/candidates/{id}', 'show');
         Route::post('/create-candidate', 'create');
         Route::delete('/delete-candidate/{id}', 'destroy');
+    });
+
+    Route::controller(VoteController::class)->group(function () {
+        Route::post('/create-vote', 'create');
+        Route::get('/check-vote/{eid}/{id}', 'checkVote');
     });
 });

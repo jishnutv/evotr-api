@@ -15,7 +15,7 @@ class CandidateController extends Controller
     public function index($id)
     {
         try {
-            $c = Candidate::where('election_id', $id)->get();
+            $c = Candidate::with(['election', 'votes'])->where('election_id', $id)->get();
             return response()->json([
                 'success' => true,
                 'data' => $c

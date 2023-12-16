@@ -21,8 +21,22 @@ class Candidate extends Model
         'status',
     ];
 
+    protected $appends = [
+        'total_votes'
+    ];
+
     public function election()
     {
         return $this->belongsTo(Election::class);
+    }
+
+    public function votes()
+    {
+        return $this->hasMany(Vote::class, 'candidate_id');
+    }
+
+    public function getTotalVotesAttribute()
+    {
+        return $this->votes()->count();
     }
 }
